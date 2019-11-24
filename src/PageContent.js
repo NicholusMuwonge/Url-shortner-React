@@ -1,13 +1,19 @@
-import React, { Fragment, useEffect, useState, useRef } from 'react';
+import React, { Fragment, useState} from 'react';
 import axios from 'axios';
+import icon from './images/icon-detailed-records.svg';
+import graphs from './images/icon-detailed-records.svg';
+import bars from './images/icon-fully-customizable.svg';
+import worker from './images/illustration-working.svg';
 
-// AIzaSyBKcrtVLt_-5NAtEAf-y1rzlL7AtPauC0s
+
 const Content = () =>{
     const [data, postfunction] = useState({url:''})
-    const [store, storeUpdater] = useState([])
-    const [urlList, listUpdater] = useState([])
+    const [initialButtonState, ButtonUpdater] = useState(false)
+    const [submitButton, submitterFunction] = useState(false)
+    
     const inputRef = React.createRef();
     const postUrl = 'https://rel.ink/api/links/';
+    const concatUrl = 'https://rel.ink/'
     const makePost= () =>(
         axios.post(postUrl,{url: inputRef.current.value}).then(
         result => {
@@ -15,22 +21,66 @@ const Content = () =>{
                 result = {
                     'error': 'not found'
                 }
+                console.log(result)
             }
             postfunction(result.data)
-            console.log(result.data, 'this is the data');
+            
         }
     ).catch(
         err => console.log(err)
     ))
 
-    console.log(urlList)
+
+    const handleSubmit=()=>{
+        makePost();
+        setTimeout(()=> {
+            submitterFunction({...submitButton, submitButton:true})
+        }, 1500)
+        
+    }
+    
+    const handleButtonClick = () => {
+        const copied = {...initialButtonState, initialButtonState:true}
+        ButtonUpdater(copied)
+    }
+
+    const copyToClipBoard = () => {
+        
+        const Copy = document.getElementById('finishedurl').innerHTML;
+        const newField = document.getElementsByTagName('body')[0];
+        const inputField = document.createElement('INPUT');
+        newField.appendChild(inputField) 
+        inputField.setAttribute('value', Copy);
+        inputField.select();
+        document.execCommand('copy');
+        newField.removeChild(inputField);
+        handleButtonClick()
+    }
+
+
     const handleChange = (e) => {
         e.persist();
         postfunction({...data, url:inputRef.current.value})
+        }
+    
+    const DisplayTiles = (props) => (
+        <div class="card col-md-3 mr-auto" id="cardstyle" style={{width:'18rem'}}>
+                    <div class="card-body">
+                        <br/>
+                        <img class="img-fluid" src={props.image} />
+                        <br/><br/>
+                        <h5 class="card-title">{props.title}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <br/>
+                        <p 
+                        class="card-text align-right text-muted muted">
+                            {props.text}</p>
+                    </div>
+            </div>
+    )
 
-    }
-
-    return (<Fragment>
+    return (
+    <Fragment>
     <div class="container">
         <div class="row" id='intro'>
         <div class="col-md-6 col-sm-pull-6">
@@ -43,7 +93,7 @@ const Content = () =>{
         <div class="col-md-6 col-sm-push-6" >
             <img 
             class='img-fluid' 
-            src="./images/illustration-working.svg" alt=""/></div>
+            src={worker} alt=""/></div>
         </div>
         <br/>
         <div class="started ">
@@ -64,31 +114,26 @@ const Content = () =>{
                 />
                 <button class=" 
                 btn btn-info log" 
-                onClick={makePost}
+                onClick={handleSubmit}
                 id='shorten'>Shorten It !</button>
         </div>
-        {/* {
-            data.map((item,index) =>(
-                <div class='container list-inline' id='searchbox1' key={index}>
-                    <span class="list-inline-item" >{item['inputUrl']}</span>
-                    <span class="list-inline-item" id='finishedurl'>{item['url']}</span>
-                <button class="float-right list-inline-item btn btn-info log" id='shorten'>Copy</button>
+        
+        <div class='container list-inline' style={{visibility:(submitButton==false)?'hidden':'visible'}}id='searchbox1'>
+                <span class="list-inline-item" 
+                style={{fontWeight:'bolder'}}>{data['url']}</span>
+                <span class="list-inline-item" id='finishedurl' 
+                style={{color:'rgb(63, 204, 204)', fontWeight:'900px'}}>{concatUrl + data['hashid']}</span>
+                <button 
+                className="copy float-right list-inline-item btn btn-info log" 
+                id='shorten'
+                style={{
+                    backgroundColor:(initialButtonState)?'black':'',
+                    color:(initialButtonState)?'white':''
+                }}
+                onClick={copyToClipBoard}
+                >{!initialButtonState?'Copy':'Copied'}</button>
         </div>
-            ))
-        } */}
-        <div class='container list-inline' id='searchbox1'>
-                <span class="list-inline-item">{data['url']}</span>
-                <span class="list-inline-item" id='finishedurl'>{postUrl + data['hashid']}</span>
-                <button class="float-right list-inline-item btn btn-info log" id='shorten'>Copy</button>
-        </div>
-        {/* <br/>
-        <br/><br/>
-        <div class='container list-inline col-md-12 col-sm-12' id='searchbox1'>
-                <span class="list-inline-item">somesomesomesomesomesomesomesomesome</span>
-                <span class="list-inline-item" id='finishedurl'>somesomesomesomesomesomesomes</span>
-                <button class="float-right list-inline-item btn btn-info log" id='shorten'>Copy</button>
-        </div>
-        <br/> */}
+        
         <br/><br/>
         <div class="container justify-content-center advanced">
         <h3 class="text-center stats">Advanced Statistics</h3>
@@ -99,48 +144,28 @@ const Content = () =>{
             </div>
         </div>
         <div class="container row" id='tiles'>
-            <div class="card col-md-3 mr-auto" id="cardstyle" style={{width:'18rem'}}>
-                    <div class="card-body">
-                        <br/>
-                        <img class="img-fluid" src="./images/icon-brand-recognition.svg" />
-                        <br/><br/>
-                        <h5 class="card-title">Brand Recognition</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <br/>
-                        <p class="card-text align-right text-muted muted">Boost your brand recognitionwith each click. Generic links dont mean a thing.
-                            Branded links help instill confidence in the content</p>
-                    </div>
-            </div>
-            <div class="card col-md-3 mr-auto" id="cardstyle" style={{width:'18rem'}}>
-                    <div class="card-body">
-                        <br/>
-                        <img class="img-fluid" src="./images/icon-detailed-records.svg" />
-                        <br/><br/>
-                        <h5 class="card-title">Detailed Records</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <br/>
-                        <p class="card-text align-right text-muted muted">Boost your brand recognitionwith each click. Generic links dont mean a thing.
-                            Branded links help instill confidence in the content</p>
-                    </div>
-            </div>
-            <br/>
-            <div class="card col-md-3 mr-auto" id="cardstyle" style={{width:'18rem'}}>
-                    <div class="card-body">
-                        <br/>
-                        <img class="img-fluid" src="./images/icon-fully-customizable.svg" />
-                        <br/><br/>
-                        <h5 class="card-title">Brand Recognition</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <br/>
-                        <p class="card-text align-right text-muted muted">Boost your brand recognitionwith each click. Generic links dont mean a thing.
-                            Branded links help instill confidence in the content</p>
-                    </div>
-            </div>
+            < DisplayTiles 
+            image={icon}
+            title='Brand Recognition'
+            text='Boost your brand recognitionwith each click. Generic links dont mean a thing.Branded links help instill confidence in the content'
+            />
+            <DisplayTiles
+            image={graphs}
+            title={'Detailed Records'}
+            text='Boost your brand recognitionwith each click. Generic links dont mean a thing.
+            Branded links help instill confidence in the content' />
+
+            <DisplayTiles 
+            image={bars}
+            title='Fully Customisable'
+            text='Boost your brand recognitionwith each click. Generic links dont mean a thing.
+            Branded links help instill confidence in the content' />
         </div>
     </div>
     <div class="container-fluid info">
     </div>
-    </Fragment>)
+    </Fragment>
+    )
 };
 
 export default Content;
