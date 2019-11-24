@@ -134,7 +134,7 @@ const Content = () =>{
                 >{!initialButtonState?'Copy':'Copied'}</button>
         </div>
         
-        <br/><br/>
+        <br/><br/><br/><br/>
         <div class="container justify-content-center advanced">
         <h3 class="text-center stats">Advanced Statistics</h3>
         <br/>
@@ -161,6 +161,8 @@ const Content = () =>{
             text='Boost your brand recognitionwith each click. Generic links dont mean a thing.
             Branded links help instill confidence in the content' />
         </div>
+        <br/>
+        <br/>
     </div>
     <div class="container-fluid info">
     </div>
