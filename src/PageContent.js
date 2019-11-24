@@ -120,7 +120,7 @@ const Content = () =>{
         
         <div class='container list-inline' style={{visibility:(submitButton==false)?'hidden':'visible'}}id='searchbox1'>
                 <span class="list-inline-item original" 
-                style={{fontWeight:'bolder', display:'inline'}}>{data['url']}</span>
+                style={{fontWeight:'bolder', display:'inline', paddingLeft:'2.3rem', justifyContent:'center'}}>{data['url']}</span>
                 <span class="list-inline-item" id='finishedurl' 
                 style={{color:'rgb(63, 204, 204)', fontWeight:'900px'}}>{concatUrl + data['hashid']}</span>
                 <button 
@@ -134,7 +134,7 @@ const Content = () =>{
                 >{!initialButtonState?'Copy':'Copied'}</button>
         </div>
         
-        <br/><br/>
+        <br/><br/><br/><br/>
         <div class="container justify-content-center advanced">
         <h3 class="text-center stats">Advanced Statistics</h3>
         <br/>
@@ -161,6 +161,8 @@ const Content = () =>{
             text='Boost your brand recognitionwith each click. Generic links dont mean a thing.
             Branded links help instill confidence in the content' />
         </div>
+        <br/>
+        <br/>
     </div>
     <div class="container-fluid info">
     </div>
