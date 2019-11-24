@@ -52,7 +52,13 @@ nav{
 #description{
   margin-left: 3em;
   font-size: 1.5em;
-  /* font-weight: bold; */
+  color:rgba(128, 128, 128, 0.76);
+  font-family: monospace;
+}
+
+#description2{
+  margin-left: 3em;
+  font-size: 1.5em;
   color:rgba(128, 128, 128, 0.76);
   font-family: monospace;
 }
@@ -206,6 +212,28 @@ nav{
     width: 100vw;
     margin-left: 1px;
 }
+
+.original{
+  position: relative;
+  justify-content: center;
+  overflow: inherit;
+  padding-bottom: 3rem;
+
+}
+
+.advanced{
+  margin-top: 5em;
+  /* position: absolute; */
+  max-width: 79vw;
+  margin-left: 3em;
+  margin-top: 6rem;
+  justify-content: start;
+}
+
+#description2{
+  justify-content: start;
+  margin-left: -2rem;
+}
 }
 @media (max-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
   .row {
@@ -238,6 +266,26 @@ nav{
     width: 100vw;
     margin-left: 1px;
 }
+  .original{
+    position: relative;
+    justify-content: center;
+    overflow: inherit;
+    padding-bottom: 3rem;
+  }
+
+  .advanced{
+    margin-top: 5em;
+    /* position: absolute; */
+    max-width: 79vw;
+    margin-left: 3em;
+    margin-top: 6rem;
+    justify-content: start;
+  }
+
+  #description2{
+    justify-content: start;
+    margin-left: -2rem;
+  }
 }
 @media (max-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
   .row {
@@ -276,6 +324,18 @@ nav{
   max-width: 79vw;
   margin-left: 3em;
   margin-top: 6rem;
+  justify-content: start;
 }
 
+.original{
+  position: relative;
+  justify-content: center;
+  padding-bottom: 3rem;
+  overflow: inherit;
+}
+
+  #description2{
+    justify-content: start;
+    margin-left: -2rem;
+  }
 }

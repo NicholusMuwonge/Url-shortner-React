@@ -119,8 +119,8 @@ const Content = () =>{
         </div>
         
         <div class='container list-inline' style={{visibility:(submitButton==false)?'hidden':'visible'}}id='searchbox1'>
-                <span class="list-inline-item" 
-                style={{fontWeight:'bolder'}}>{data['url']}</span>
+                <span class="list-inline-item original" 
+                style={{fontWeight:'bolder', display:'inline'}}>{data['url']}</span>
                 <span class="list-inline-item" id='finishedurl' 
                 style={{color:'rgb(63, 204, 204)', fontWeight:'900px'}}>{concatUrl + data['hashid']}</span>
                 <button 
@@ -138,7 +138,7 @@ const Content = () =>{
         <div class="container justify-content-center advanced">
         <h3 class="text-center stats">Advanced Statistics</h3>
         <br/>
-        <div class="lead text-center" id="description">
+        <div class="lead text-center" id="description2">
             Track how your links are performing across the web<br/>
                 our advanced Statistics dashbord.
             </div>
