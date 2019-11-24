@@ -64,16 +64,16 @@ const Content = () =>{
         }
     
     const DisplayTiles = (props) => (
-        <div class="card col-md-3 mr-auto" id="cardstyle" style={{width:'18rem'}}>
-                    <div class="card-body">
+        <div className="card col-md-3 mr-auto" id="cardstyle" style={{width:'18rem'}}>
+                    <div className="card-body">
                         <br/>
-                        <img class="img-fluid" src={props.image} />
+                        <img className="img-fluid" src={props.image} />
                         <br/><br/>
-                        <h5 class="card-title">{props.title}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <h5 className="card-title">{props.title}</h5>
+                        <h6 className="card-subtitle mb-2 text-muted"></h6>
                         <br/>
                         <p 
-                        class="card-text align-right text-muted muted">
+                        className="card-text align-right text-muted muted">
                             {props.text}</p>
                     </div>
             </div>
@@ -81,29 +81,29 @@ const Content = () =>{
 
     return (
     <Fragment>
-    <div class="container">
-        <div class="row" id='intro'>
-        <div class="col-md-6 col-sm-pull-6">
-            <h3 class="display-4" id='heading'>More than Just <br/> shorter links </h3>
+    <div className="container">
+        <div className="row" id='intro'>
+        <div className="col-md-6 col-sm-pull-6">
+            <h3 className="display-4" id='heading'>More than Just <br/> shorter links </h3>
             <br/>
-            <div class="lead mb-0" id="description">build your brand's recognition and get detailed
+            <div className="lead mb-0" id="description">build your brand's recognition and get detailed
             insights on how your links are performing.
             </div>
         </div>
-        <div class="col-md-6 col-sm-push-6" >
+        <div className="col-md-6 col-sm-push-6" >
             <img 
-            class='img-fluid' 
+            className='img-fluid' 
             src={worker} alt=""/></div>
         </div>
         <br/>
-        <div class="started ">
-        <button class="btn btn-info " id="start" >Get Started</button>
+        <div className="started ">
+        <button className="btn btn-info " id="start" >Get Started</button>
         </div>
         <br/>
         <br/>
-        <div class='container' id='searchbox'>
+        <div className='container' id='searchbox'>
                 <input 
-                class="url" type="text" 
+                className="url" type="text" 
                 placeholder="https://example.com"
                 ref={inputRef}
                 name='url'
@@ -112,16 +112,16 @@ const Content = () =>{
                 pattern="https?://.+" 
                 required
                 />
-                <button class=" 
+                <button className=" 
                 btn btn-info log" 
                 onClick={handleSubmit}
                 id='shorten'>Shorten It !</button>
         </div>
         
-        <div class='container list-inline' style={{visibility:(submitButton==false)?'hidden':'visible'}}id='searchbox1'>
-                <span class="list-inline-item original" 
+        <div className='container list-inline' style={{visibility:(submitButton==false)?'hidden':'visible'}}id='searchbox1'>
+                <span className="list-inline-item original" 
                 style={{fontWeight:'bolder', display:'inline', paddingLeft:'2.3rem', justifyContent:'center'}}>{data['url']}</span>
-                <span class="list-inline-item" id='finishedurl' 
+                <span className="list-inline-item" id='finishedurl' 
                 style={{color:'rgb(63, 204, 204)', fontWeight:'900px'}}>{concatUrl + data['hashid']}</span>
                 <button 
                 className="copy float-right list-inline-item btn btn-info log" 
@@ -135,15 +135,15 @@ const Content = () =>{
         </div>
         
         <br/><br/><br/><br/>
-        <div class="container justify-content-center advanced">
-        <h3 class="text-center stats">Advanced Statistics</h3>
+        <div className="container justify-content-center advanced">
+        <h3 className="text-center stats">Advanced Statistics</h3>
         <br/>
-        <div class="lead text-center" id="description2">
+        <div className="lead text-center" id="description2">
             Track how your links are performing across the web<br/>
                 our advanced Statistics dashbord.
             </div>
         </div>
-        <div class="container row" id='tiles'>
+        <div className="container row" id='tiles'>
             < DisplayTiles 
             image={icon}
             title='Brand Recognition'
@@ -164,7 +164,7 @@ const Content = () =>{
         <br/>
         <br/>
     </div>
-    <div class="container-fluid info">
+    <div className="container-fluid info">
     </div>
     </Fragment>
     )
